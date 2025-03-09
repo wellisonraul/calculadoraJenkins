@@ -6,4 +6,9 @@ WORKDIR /src
 
 # Copia o arquivo de projeto e restaura as dependências
 COPY . .
-ENTRYPOINT ["dotnet", "run"]
+
+RUN dotnet build
+
+RUN dotnet test
+
+ENTRYPOINT ["dotnet", "run", "sleep 300"]

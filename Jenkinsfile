@@ -7,35 +7,14 @@ pipeline {
     }
 
     stages {
-        stage('Build') {
+        stage('Build, testando e empacotando') {
             steps {
                 script {
-                    echo "Compilando a aplicação..."
-                    sh 'dotnet build'  // Exemplo de comando para compilar uma aplicação Dotnet
+                    echo "Compilando, testando e empacotando a aplicação..."
+                    sh 'docker build -t $APP_NAME:$BUILD_NUMBER . --no-cache'  // Exemplo de comando para compilar uma aplicação Dotnet
                 }
             }
         }
-
-        stage('Test') {
-            steps {
-                script {
-                    echo "Executando testes..."
-                    sh 'dotnet test'  // Exemplo de comando para rodar testes
-                }
-            }
-        }
-
-        stage('Empacotando') {
-            steps {
-                script {
-                    echo "Empacotando a aplicação..."
-                   sh 'docker build -t $APP_NAME:$BUILD_NUMBER . --no-cache'  // Exemplo de comando para compilar uma aplicação Dotnet
-                }
-            }
-        }
-
-
-        
 
         stage('Deploy') {
             steps {

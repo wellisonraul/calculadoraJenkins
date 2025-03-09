@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     environment {
-        APP_NAME = "calculadora"
+        APP_NAME = "calculadora-" + env.BRANCH_NAME
         BUILD_DIR = "0.0.1"
     }
 

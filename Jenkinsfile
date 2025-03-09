@@ -11,7 +11,7 @@ pipeline {
             steps {
                 script {
                     echo "Compilando a aplicação..."
-                    sh 'docker build -t $APP_NAME:$BUILD_NUMBER . --no-cache'  // Exemplo de comando para compilar uma aplicação Dotnet
+                    sh 'dotnet build'  // Exemplo de comando para compilar uma aplicação Dotnet
                 }
             }
         }
@@ -24,6 +24,18 @@ pipeline {
                 }
             }
         }
+
+        stage('Empacotando') {
+            steps {
+                script {
+                    echo "Empacotando a aplicação..."
+                   sh 'docker build -t $APP_NAME:$BUILD_NUMBER . --no-cache'  // Exemplo de comando para compilar uma aplicação Dotnet
+                }
+            }
+        }
+
+
+        
 
         stage('Deploy') {
             steps {

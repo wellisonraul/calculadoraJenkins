@@ -2,7 +2,8 @@ pipeline {
     agent any
 
     environment {
-        APP_NAME = "calculadora-" + env.BRANCH_NAME
+        APP_NAME = "calculadora-"
+        REPOSITORY_BRANCH_NAME = GIT_BRANCH.replaceFirst(/^origin\//, '')
         BUILD_DIR = "0.0.1"
     }
 

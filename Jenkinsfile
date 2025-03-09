@@ -2,8 +2,8 @@ pipeline {
     agent any
 
     environment {
-        APP_NAME = "calculadora-"
-        REPOSITORY_BRANCH_NAME = GIT_BRANCH.replaceFirst(/^origin\//, '')
+        APP_NAME = "calc-"
+        BRANCH_NAME = GIT_BRANCH.replaceFirst(/^origin\//, '')
         BUILD_DIR = "0.0.1"
     }
 
@@ -12,7 +12,7 @@ pipeline {
             steps {
                 script {
                     echo "Compilando, testando e empacotando a aplicação..."
-                    sh 'docker build -t $APP_NAME:$BUILD_NUMBER . --no-cache'  // Exemplo de comando para compilar uma aplicação Dotnet
+                    sh 'docker build -t $APP_NAME$BRANCH_NAME:$BUILD_NUMBER . --no-cache'  // Exemplo de comando para compilar uma aplicação Dotnet
                 }
             }
         }
@@ -21,7 +21,7 @@ pipeline {
             steps {
                 script {
                     echo "Realizando o deploy..."
-                    sh 'docker run -d $APP_NAME:$BUILD_NUMBER'  // Rodando o container Docker
+                    sh 'docker run -d $APP_NAME$BRANCH_NAME:$BUILD_NUMBER'  // Rodando o container Docker
                 }
             }
         }

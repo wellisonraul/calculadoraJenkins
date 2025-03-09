@@ -23,7 +23,7 @@ public class CalculadoraTest {
 
     [Test]
     public void TestSomaFalha() {
-        int resultado = calc.Soma(2, 2);
+        int resultado = calc.Soma(2, 3);
         Assert.AreNotEqual(5, resultado); // Teste deve passar, pois 2+2 != 5
     }
 }

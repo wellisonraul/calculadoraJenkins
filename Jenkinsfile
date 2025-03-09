@@ -7,12 +7,6 @@ pipeline {
     }
 
     stages {
-        stage('Checkout') {
-            steps {
-                git 'https://github.com/wellisonraul/calc.net'
-            }
-        }
-
         stage('Build') {
             steps {
                 script {

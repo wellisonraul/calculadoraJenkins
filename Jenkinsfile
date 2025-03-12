@@ -12,7 +12,7 @@ pipeline {
             steps {
                 script {
                     echo "Compilando, testando e empacotando a aplicação..."
-                    sh 'docker build -t $APP_NAME$BRANCH_NAME:$BUILD_NUMBER . --no-cache'  // Exemplo de comando para compilar uma aplicação Dotnet
+                    sh 'docker build -t $APP_NAME:$BRANCH_NAME-$BUILD_NUMBER . --no-cache'  // Exemplo de comando para compilar uma aplicação Dotnet
                 }
             }
         }
@@ -21,7 +21,7 @@ pipeline {
             steps {
                 script {
                     echo "Realizando o deploy..."
-                    sh 'docker run --name $APP_NAME$BRANCH_NAME:$BUILD_NUMBER -d $APP_NAME$BRANCH_NAME:$BUILD_NUMBER'  // Rodando o container Docker
+                    sh 'docker run --name $APP_NAME-$BRANCH_NAME-$BUILD_NUMBER -d $APP_NAME$BRANCH_NAME:$BUILD_NUMBER'  // Rodando o container Docker
                 }
             }
         }

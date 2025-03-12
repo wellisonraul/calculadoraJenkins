@@ -20,12 +20,15 @@ pipeline {
 
         stage('Docker image push') {
             steps {
-
-                /* Push image using withRegistry. */
-                docker.withRegistry('https://registry.hub.docker.com/', '2') {
+                script {
+                    /* Push image using withRegistry. */
+                    docker.withRegistry('https://registry.hub.docker.com/', '2') {
                     app.push('$BUILD_NUMBER')
                     app.push('latest')
                 }
+
+                }
+                
 
                 // script {
                 //     echo "Enviando imagens para o docker hub"

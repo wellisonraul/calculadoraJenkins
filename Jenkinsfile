@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     environment {
-        APP_NAME = "calc-"
+        APP_NAME = "calc_"
         BRANCH_NAME = GIT_BRANCH.replaceFirst(/^origin\//, '')
         BUILD_DIR = "${env.BUILD_ID}"
     }

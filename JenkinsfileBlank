@@ -1,0 +1,42 @@
+pipeline {
+    agent any
+
+    environment {
+        EXAMPLE = "example-app"
+    }
+
+    stages {
+        stage('Preparation') {
+            steps {
+                echo "🔧 Preparing the environment..."
+            }
+        }
+
+        stage('Build') {
+            steps {
+                echo "🏗️ Building the application..."
+            }
+        }
+
+        stage('Test') {
+            steps {
+                echo "🧪 Running tests..."
+            }
+        }
+
+        stage('Deploy') {
+            steps {
+                echo "🚀 Deploying to production..."
+            }
+        }
+    }
+
+    post {
+        success {
+            echo "✅ Pipeline completed successfully!"
+        }
+        failure {
+            echo "❌ Pipeline failed!"
+        }
+    }
+}

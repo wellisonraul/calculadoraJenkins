@@ -12,7 +12,8 @@ pipeline {
             steps {
                 script {
                     echo "Compilando, testando e empacotando a aplicação..."
-                    sh 'docker build -t $APP_NAME:$BRANCH_NAME-$BUILD_NUMBER . --no-cache'  // Exemplo de comando para compilar uma aplicação Dotnet
+                    //sh 'docker build -t $APP_NAME:$BRANCH_NAME-$BUILD_NUMBER . --no-cache'  // Exemplo de comando para compilar uma aplicação Dotnet
+                    app = docker.build('$APP_NAME:$BRANCH_NAME-$BUILD_NUMBER', '.')
                 }
             }
         }
@@ -21,7 +22,7 @@ pipeline {
             steps {
 
                 /* Push image using withRegistry. */
-                docker.withRegistry('https://hub.docker.com/', 'dockerhub') {
+                docker.withRegistry('https://hub.docker.com/', '2') {
                     app.push('$APP_NAME:$BRANCH_NAME-$BUILD_NUMBER')
                 }
 

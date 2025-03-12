@@ -4,7 +4,7 @@ pipeline {
     environment {
         APP_NAME = "wellisonraul/calculadora"
         BRANCH_NAME = GIT_BRANCH.replaceFirst(/^origin\//, '')
-        BUILD_NUMBER = "${env.BUILD_ID}"
+        BUILD_ID = "${env.BUILD_ID}"
     }
 
     stages {
@@ -13,7 +13,7 @@ pipeline {
                 script {
                     echo "Compilando, testando e empacotando a aplicação..."
                     //sh 'docker build -t $APP_NAME:$BRANCH_NAME-$BUILD_NUMBER . --no-cache'  // Exemplo de comando para compilar uma aplicação Dotnet
-                    app = docker.build('$APP_NAME:$BRANCH_NAME-$BUILD_NUMBER', '.')
+                    app = docker.build('$APP_NAME:$BRANCH_NAME-$BUILD_ID', '.')
                 }
             }
         }
@@ -23,18 +23,11 @@ pipeline {
                 script {
                     /* Push image using withRegistry. */
                     docker.withRegistry('https://registry.hub.docker.com/', '2') {
-                    app.push('$BUILD_NUMBER')
-                    app.push('latest')
+                        app.push('$BUILD_ID')
+                        app.push('latest')
+                    }
                 }
-
-                }
-                
-
-                // script {
-                //     echo "Enviando imagens para o docker hub"
-                //     sh 'docker login'
-                //     sh 'docker image push $APP_NAME:$BRANCH_NAME-$BUILD_NUMBER'  // Exemplo de comando para compilar uma aplicação Dotnet
-                // }
+            
             }
         }
 
@@ -43,7 +36,7 @@ pipeline {
                 script {
                     echo "Realizando o deploy..."
                     sh 'docker rm -f  $APP_NAME-$BRANCH_NAME'
-                    sh 'docker run --name $APP_NAME-$BRANCH_NAME -d $APP_NAME:$BRANCH_NAME-$BUILD_NUMBER'  // Rodando o container Docker
+                    sh 'docker run --name $APP_NAME-$BRANCH_NAME -d $APP_NAME:$BRANCH_NAME-$BUILD_ID'  // Rodando o container Docker
                 }
             }
         }

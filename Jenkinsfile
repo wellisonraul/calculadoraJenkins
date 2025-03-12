@@ -4,7 +4,7 @@ pipeline {
     environment {
         APP_NAME = "calc-"
         BRANCH_NAME = GIT_BRANCH.replaceFirst(/^origin\//, '')
-        BUILD_DIR = env.BUILD_ID
+        BUILD_DIR = "${env.BUILD_ID}"
     }
 
     stages {

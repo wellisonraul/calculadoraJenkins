@@ -4,7 +4,7 @@ pipeline {
     environment {
         APP_NAME = "wellisonraul/calculadora"
         BRANCH_NAME = GIT_BRANCH.replaceFirst(/^origin\//, '')
-        BUILD_DIR = "${env.BUILD_ID}"
+        BUILD_NUMBER = "${env.BUILD_ID}"
     }
 
     stages {
@@ -22,8 +22,9 @@ pipeline {
             steps {
 
                 /* Push image using withRegistry. */
-                docker.withRegistry('https://hub.docker.com/', '2') {
-                    app.push('$APP_NAME:$BRANCH_NAME-$BUILD_NUMBER')
+                docker.withRegistry('https://registry.hub.docker.com/', '2') {
+                    app.push('$BUILD_NUMBER')
+                    app.push('latest')
                 }
 
                 // script {

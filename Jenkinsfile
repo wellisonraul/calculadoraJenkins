@@ -2,7 +2,8 @@ pipeline {
     agent any
 
     environment {
-        APP_NAME = "wellisonraul/calculadora"
+        APP_NAME    = "calculadora"
+        IMAGE_NAME  = "wellisonraul/${env.APP_NAME}"
         BRANCH_NAME = GIT_BRANCH.replaceFirst(/^origin\//, '')
     }
 
@@ -12,7 +13,7 @@ pipeline {
                 script {
                     echo "Compilando, testando e empacotando a aplicação..."
                     //sh 'docker build -t $APP_NAME:$BRANCH_NAME-$BUILD_NUMBER . --no-cache'  // Exemplo de comando para compilar uma aplicação Dotnet
-                    app = docker.build("${env.APP_NAME}:${env.BRANCH_NAME}-${env.BUILD_ID}", '.')
+                    app = docker.build("${env.IMAGE_NAME}:${env.BRANCH_NAME}-${env.BUILD_ID}", '.')
                 }
             }
         }
@@ -44,13 +45,13 @@ pipeline {
                     }
 
                     // Roda o novo container
-                    docker.image("${env.APP_NAME}:${env.BRANCH_NAME}-${env.BUILD_ID}").run("--name ${env.APP_NAME}-${env.BRANCH_NAME} -d -p 8080:80")
+                    docker.image("${env.IMAGE_NAME}:${env.BRANCH_NAME}-${env.BUILD_ID}").run("--name ${env.APP_NAME}-${env.BRANCH_NAME} -d -p 8080:80")
 
 
                     echo "✅ Deploy finalizado com sucesso!"
                 }
             }
-        }
+        }qweqweqweqwewqe
     }
 
     post {

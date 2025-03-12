@@ -21,6 +21,7 @@ pipeline {
             steps {
                 script {
                     echo "Enviando imagens para o docker hub"
+                    sh 'docker login'
                     sh 'docker image push $APP_NAME:$BRANCH_NAME-$BUILD_NUMBER'  // Exemplo de comando para compilar uma aplicação Dotnet
                 }
             }

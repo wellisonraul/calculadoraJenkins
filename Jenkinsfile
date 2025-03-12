@@ -51,7 +51,7 @@ pipeline {
                     echo "✅ Deploy finalizado com sucesso!"
                 }
             }
-        }qweqweqweqwewqe
+        }
     }
 
     post {

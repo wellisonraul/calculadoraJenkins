@@ -44,7 +44,7 @@ pipeline {
                     }
 
                     // Roda o novo container
-                    docker.image("${env.IMAGE_NAME}:${env.BRANCH_NAME}-${env.BUILD_ID}").run("--name ${env.APP_NAME}-${env.BRANCH_NAME} -d -p 8080:80")
+                    docker.image("${env.IMAGE_NAME}:${env.BRANCH_NAME}-${env.BUILD_ID}").run("--name ${env.APP_NAME}-${env.BRANCH_NAME}")
 
 
                     echo "✅ Deploy finalizado com sucesso!"

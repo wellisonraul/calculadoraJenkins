@@ -21,7 +21,7 @@ pipeline {
             steps {
                 script {
                     echo "Realizando o deploy..."
-                    sh 'docker run --name $APP_NAME-$BRANCH_NAME-$BUILD_NUMBER -d $APP_NAME$BRANCH_NAME:$BUILD_NUMBER'  // Rodando o container Docker
+                    sh 'docker run --name $APP_NAME-$BRANCH_NAME-$BUILD_NUMBER -d $APP_NAME:$BRANCH_NAME-$BUILD_NUMBER'  // Rodando o container Docker
                 }
             }
         }

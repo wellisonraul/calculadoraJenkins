@@ -33,9 +33,21 @@ pipeline {
         stage('Deploy') {
             steps {
                 script {
-                    echo "Realizando o deploy..."
-                    sh 'docker rm -f  $APP_NAME-$BRANCH_NAME'
-                    sh 'docker run --name $APP_NAME-$BRANCH_NAME -d $APP_NAME:$BRANCH_NAME-$BUILD_ID'  // Rodando o container Docker
+                    echo "🚀 Realizando o deploy..."
+
+                    // Força parar o container antigo se ele existir
+                    try {
+                        docker.container("${env.APP_NAME}-${env.BRANCH_NAME}").stop()
+                        docker.container("${env.APP_NAME}-${env.BRANCH_NAME}").remove()
+                    } catch (Exception e) {
+                        echo "Nenhum container antigo rodando. Vamos seguir com o deploy novo!"
+                    }
+
+                    // Roda o novo container
+                    docker.image("${env.APP_NAME}:${env.BRANCH_NAME}-${env.BUILD_ID}").run("--name ${env.APP_NAME}-${env.BRANCH_NAME} -d -p 8080:80")
+
+
+                    echo "✅ Deploy finalizado com sucesso!"
                 }
             }
         }

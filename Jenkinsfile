@@ -38,8 +38,7 @@ pipeline {
 
                     // Força parar o container antigo se ele existir
                     try {
-                        docker.container("${env.APP_NAME}-${env.BRANCH_NAME}").stop()
-                        docker.container("${env.APP_NAME}-${env.BRANCH_NAME}").remove()
+                        sh "docker rm -f ${env.APP_NAME}-${env.BRANCH_NAME} || true"
                     } catch (Exception e) {
                         echo "Nenhum container antigo rodando. Vamos seguir com o deploy novo!"
                     }

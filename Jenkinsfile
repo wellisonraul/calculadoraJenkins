@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     environment {
-        APP_NAME = "calculadora"
+        APP_NAME = "wellisonraul/calculadora"
         BRANCH_NAME = GIT_BRANCH.replaceFirst(/^origin\//, '')
         BUILD_DIR = "${env.BUILD_ID}"
     }
@@ -13,6 +13,15 @@ pipeline {
                 script {
                     echo "Compilando, testando e empacotando a aplicação..."
                     sh 'docker build -t $APP_NAME:$BRANCH_NAME-$BUILD_NUMBER . --no-cache'  // Exemplo de comando para compilar uma aplicação Dotnet
+                }
+            }
+        }
+
+        stage('Docker image push') {
+            steps {
+                script {
+                    echo "Enviando imagens para o docker hub"
+                    sh 'docker image push $APP_NAME:$BRANCH_NAME-$BUILD_NUMBER'  // Exemplo de comando para compilar uma aplicação Dotnet
                 }
             }
         }

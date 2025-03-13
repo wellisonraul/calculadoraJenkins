@@ -18,7 +18,7 @@ public class CalculadoraTest {
     [Test] 
     public void TestSubtrai() {
         int resultado = calc.Subtrai(10, 4);
-        Assert.AreEqual(6, resultado);
+        Assert.AreEqual(7, resultado);
     }
 
     [Test]

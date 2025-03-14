@@ -1,6 +1,6 @@
 
 withInfisical(configuration: [infisicalCredentialId: 'infisical', infisicalEnvironmentSlug: 'aula03', infisicalProjectSlug: 'infnet-online-rvvt', infisicalUrl: 'http://localhost:80'], infisicalSecrets: [infisicalSecret(includeImports: true, path: '/', secretValues: [[infisicalKey: 'SOMA_DATA1'], [infisicalKey: 'SOMA_DATA2']])]) {
-    pipeline {
+    // pipeline {
         agent any
 
         environment {
@@ -64,5 +64,5 @@ withInfisical(configuration: [infisicalCredentialId: 'infisical', infisicalEnvir
                 echo "Pipeline falhou!"
             }
         }
-    }
+    // }
 }

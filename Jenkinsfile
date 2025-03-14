@@ -7,12 +7,33 @@ pipeline {
         BRANCH_NAME = GIT_BRANCH.replaceFirst(/^origin\//, '')
     }
 
+    withInfisical(
+        configuration: [
+            infisicalCredentialId: '1be2a956-3ff6-4f21-8bd4-1fdfb316ecab',
+            infisicalEnvironmentSlug: 'aula03', 
+            infisicalProjectSlug: 'infnet-online-rvvt', 
+            infisicalUrl: 'https://app.infisical.com' // Change this to your Infisical instance URL if you aren't using Infisical Cloud.
+        ], 
+        infisicalSecrets: [
+            infisicalSecret(
+                includeImports: true, 
+                path: '/', 
+                secretValues: [
+                    [infisicalKey: 'SOMA_DATA1'],
+                    [infisicalKey: "SOMA_DATA2"],
+                    [infisicalKey: 'THIS_KEY_MIGHT_NOT_EXIST', isRequired: false],
+                ]
+            )
+        ]
+    )
+
     stages {
         stage('Build, testando e empacotando') {
             steps {
                 script {
-                    echo "Compilando, testando e empacotando a aplicação..."
+                    echo "Compilando, testando e empacotando a aplicação... ${env.SOMA_DATA1}"
                     //sh 'docker build -t $APP_NAME:$BRANCH_NAME-$BUILD_NUMBER . --no-cache'  // Exemplo de comando para compilar uma aplicação Dotnet
+                    
                     app = docker.build("${env.IMAGE_NAME}:${env.BRANCH_NAME}-${env.BUILD_ID}", '.')
                 }
             }

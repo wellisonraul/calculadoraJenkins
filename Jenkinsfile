@@ -6,7 +6,7 @@ pipeline{
         APP_NAME    = "calculadora"
         IMAGE_NAME  = "wellisonraul/${env.APP_NAME}"
         BRANCH_NAME = GIT_BRANCH.replaceFirst(/^origin\//, '')
-        scannerHome = tool 'sq1'
+        scannerHome = 'tool sq1'
     }
 
     stages {

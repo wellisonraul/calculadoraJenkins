@@ -1,6 +1,6 @@
 
 node{
-withInfisical(configuration: [infisicalCredentialId: 'infisical', infisicalEnvironmentSlug: 'aula03', infisicalProjectSlug: 'infnet-online-rvvt', infisicalUrl: 'http://localhost'], infisicalSecrets: [infisicalSecret(includeImports: true, path: '/', secretValues: [[infisicalKey: 'SOMA_DATA1'], [infisicalKey: 'SOMA_DATA2']])]) {
+withInfisical(configuration: [infisicalCredentialId: 'infisical', infisicalEnvironmentSlug: 'aula03', infisicalProjectSlug: 'infnet-online-rvvt', infisicalUrl: 'http://172.26.179.252'], infisicalSecrets: [infisicalSecret(includeImports: true, path: '/', secretValues: [[infisicalKey: 'SOMA_DATA1'], [infisicalKey: 'SOMA_DATA2']])]) {
     // pipeline {
         agent any
 

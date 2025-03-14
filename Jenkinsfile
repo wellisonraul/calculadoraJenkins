@@ -6,19 +6,17 @@ pipeline{
         APP_NAME    = "calculadora"
         IMAGE_NAME  = "wellisonraul/${env.APP_NAME}"
         BRANCH_NAME = GIT_BRANCH.replaceFirst(/^origin\//, '')
+        scannerHome = tool 'SonarScanner for .NET'
     }
 
     stages {
 
          stage('SonarQube Analysis') {
             steps {
-
-            
-                def scannerHome = tool 'SonarScanner for .NET'
                 withSonarQubeEnv(installationName: 'sq1') {
-                sh "dotnet ${scannerHome}/SonarScanner.MSBuild.dll begin /k:\"Aula03\""
-                sh "dotnet build"
-                sh "dotnet ${scannerHome}/SonarScanner.MSBuild.dll end"
+                    sh "dotnet ${env.scannerHome}/SonarScanner.MSBuild.dll begin /k:\"Aula03\""
+                    sh "dotnet build"
+                    sh "dotnet ${env.scannerHome}/SonarScanner.MSBuild.dll end"
                 }
             }
         }

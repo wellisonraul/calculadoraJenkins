@@ -1,12 +1,4 @@
-pipeline {
-    agent any
-
-    environment {
-        APP_NAME    = "calculadora"
-        IMAGE_NAME  = "wellisonraul/${env.APP_NAME}"
-        BRANCH_NAME = GIT_BRANCH.replaceFirst(/^origin\//, '')
-    }
-
+node {
     withInfisical(
         configuration: [
             infisicalCredentialId: '1be2a956-3ff6-4f21-8bd4-1fdfb316ecab',
@@ -26,6 +18,16 @@ pipeline {
             )
         ]
     )
+}
+
+pipeline {
+    agent any
+
+    environment {
+        APP_NAME    = "calculadora"
+        IMAGE_NAME  = "wellisonraul/${env.APP_NAME}"
+        BRANCH_NAME = GIT_BRANCH.replaceFirst(/^origin\//, '')
+    }
 
     stages {
         stage('Build, testando e empacotando') {

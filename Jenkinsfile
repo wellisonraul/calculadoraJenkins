@@ -6,11 +6,10 @@ pipeline{
         APP_NAME    = "calculadora"
         IMAGE_NAME  = "wellisonraul/${env.APP_NAME}"
         BRANCH_NAME = GIT_BRANCH.replaceFirst(/^origin\//, '')
-        scannerHome = tool 'SonarScanner for .NET'
+        scannerHome = tool '~/.dotnet/dotnet'
     }
 
     stages {
-
          stage('SonarQube Analysis') {
             steps {
                 withSonarQubeEnv(installationName: 'sq1') {

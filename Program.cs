@@ -3,6 +3,7 @@ using System.Threading;
 
 int data1 = Environment.GetEnvironmentVariable("data1");
 int data2 = Environment.GetEnvironmentVariable("data2");
+
 Console.WriteLine("Data 1: " + data1);
 Console.WriteLine("Data 2: " + data2);
 

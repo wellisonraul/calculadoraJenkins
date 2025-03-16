@@ -18,8 +18,6 @@ node{
             )
         ]
     ) {
-    
-    agent any
 
     environment {
         APP_NAME    = "calculadora"

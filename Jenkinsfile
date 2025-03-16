@@ -6,7 +6,7 @@ node{
 
     env.APP_NAME    = "calculadora"
     env.IMAGE_NAME  = "wellisonraul/${env.APP_NAME}"
-    env.BRANCH_NAME = GIT_BRANCH.replaceFirst(/^origin\//, '')
+    // env.BRANCH_NAME = GIT_BRANCH.replaceFirst(/^origin\//, '')
 
     withInfisical(
     configuration: [

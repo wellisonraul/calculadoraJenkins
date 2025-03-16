@@ -9,6 +9,11 @@ pipeline{
         scannerHome = 'tool sq1'
     }
 
+    options {
+        // Keep only the last 5 builds and delete the older ones
+        buildDiscarder(logRotator(numToKeepStr: '5'))
+    }
+    
     stages {
          stage('SonarQube Analysis') {
             steps {

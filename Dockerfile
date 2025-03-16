@@ -7,6 +7,8 @@ WORKDIR /src
 ARG data1
 ARG data2
 
+RUN echo printenv
+
 # Copia o arquivo de projeto e restaura as dependências
 COPY . .
 

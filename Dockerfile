@@ -4,6 +4,9 @@ FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 # Define o diretório de trabalho
 WORKDIR /src
 
+ARG data1
+ARG data2
+
 # Copia o arquivo de projeto e restaura as dependências
 COPY . .
 

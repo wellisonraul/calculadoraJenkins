@@ -41,7 +41,7 @@ pipeline {
                                     path: '/', 
                                     secretValues: [
                                         [infisicalKey: 'data1'],
-                                        [infisicalKey: "data2"],
+                                        [infisicalKey: 'data2'],
                                         [infisicalKey: 'THIS_KEY_MIGHT_NOT_EXIST', isRequired: false],
                                     ]
                                 )
@@ -49,6 +49,9 @@ pipeline {
                         ) {
                         
                         sh 'printenv'
+                        env.data1    = "${env.data1}"
+                        env.data2  = "${env.data2}"
+
                         }
                     }
                 }

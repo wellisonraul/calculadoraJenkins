@@ -3,7 +3,8 @@ using System.Threading;
 
 int data1 = Environment.GetEnvironmentVariable("data1");
 int data2 = Environment.GetEnvironmentVariable("data2");
-// Console.WriteLine($"Database Connection: {dbConnection}");
+Console.WriteLine("Data 1: " + data1);
+Console.WriteLine("Data 2: " + data2);
 
 Calculadora calc = new Calculadora();
 //int resultado = calc.Soma(1, 2);

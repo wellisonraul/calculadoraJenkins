@@ -6,7 +6,6 @@ node{
 
     env.APP_NAME    = "calculadora"
     env.IMAGE_NAME  = "wellisonraul/${env.APP_NAME}"
-    // env.BRANCH_NAME = GIT_BRANCH.replaceFirst(/^origin\//, '')
 
     withInfisical(
     configuration: [
@@ -27,8 +26,6 @@ node{
             )
         ]
     ) {
-
-        
 
         sh "printenv" 
 
@@ -55,14 +52,5 @@ node{
         docker.image("${env.IMAGE_NAME}:${env.BRANCH_NAME}-${env.BUILD_ID}").run("--name ${env.APP_NAME}-${env.BRANCH_NAME}")
 
         echo "✅ Deploy finalizado com sucesso!"
-    
-        post {
-            success {
-                echo "Pipeline concluído com sucesso!"
-            }
-            failure {
-                echo "Pipeline falhou!"
-            }
-        }
     }
 }

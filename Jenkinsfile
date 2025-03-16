@@ -1,6 +1,11 @@
 pipeline {
     agent any
 
+    environment {
+        APP_NAME    = "calculadora"
+        IMAGE_NAME  = "wellisonraul/${env.APP_NAME}"
+    }
+
     options {
         // Keep only the last 5 builds and delete the older ones
         buildDiscarder(logRotator(numToKeepStr: '5'))

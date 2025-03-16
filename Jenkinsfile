@@ -1,11 +1,13 @@
-environment {
-            APP_NAME    = "calculadora"
-            IMAGE_NAME  = "wellisonraul/${env.APP_NAME}"
-            BRANCH_NAME = GIT_BRANCH.replaceFirst(/^origin\//, '')
-        }
-
+// environment {
+   
+// }
 
 node{
+
+    env.APP_NAME    = "calculadora"
+    env.IMAGE_NAME  = "wellisonraul/${env.APP_NAME}"
+    env.BRANCH_NAME = GIT_BRANCH.replaceFirst(/^origin\//, '')
+
     withInfisical(
     configuration: [
         infisicalCredentialId: 'infisical',

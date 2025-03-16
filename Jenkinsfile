@@ -14,7 +14,7 @@ pipeline{
             steps {
                 withSonarQubeEnv(installationName: 'sq1') {
                     //sh "dotnet ${env.scannerHome}/SonarScanner.MSBuild.dll begin /k:\"Aula03\""
-                    sh "dotnet ${env.scannerHome}/SonarScanner.MSBuild.dll begin /k:\"Aula03\""
+                    sh "dotnet sonarscanner begin /k:\"Aula03\""
                     sh "dotnet build"
                     sh "dotnet ${env.scannerHome}/SonarScanner.MSBuild.dll end"
                 }

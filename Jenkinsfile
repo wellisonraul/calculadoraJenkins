@@ -47,7 +47,8 @@ pipeline {
                             ]
                         ) {
                         
-                        sh 'pwd'
+                        sh 'echo pwd'
+                        sh 'ls'
                         echo "Compilando, testando e empacotando a aplicação..."
                         app = docker.build("${env.IMAGE_NAME}:${env.BRANCH_NAME}-${env.BUILD_ID}", "--build-arg data1=${env.data1} --build-arg data2=${env.data2} . --no-cache --progress=plain")
 

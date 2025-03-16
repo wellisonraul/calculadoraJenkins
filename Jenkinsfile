@@ -19,10 +19,9 @@ pipeline {
             }
         }
 
-        stage('SonarQube Analysis') {
+        stage('SonarQube Analysis2') {
             steps {
-                node{
-
+                node('any'){
                     withInfisical(
                     configuration: [
                         infisicalCredentialId: 'infisical',

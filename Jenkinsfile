@@ -33,7 +33,7 @@ node{
         sh "git checkout aula03; git pull"
 
         echo "Compilando, testando e empacotando a aplicação..."
-        app = docker.build("${env.IMAGE_NAME}:${env.BRANCH_NAME}-${env.BUILD_ID}", "--build-arg data1=${env.data1} --build-arg data2=${env.data2} . --no-cache")
+        app = docker.build("--build-arg data1=${env.data1} --build-arg data2=${env.data2}", "${env.IMAGE_NAME}:${env.BRANCH_NAME}-${env.BUILD_ID}", ". --no-cache")
 
         echo "Docker image push"
         docker.withRegistry('https://registry.hub.docker.com/', 'dockerhub') {

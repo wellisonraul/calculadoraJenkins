@@ -1,3 +1,10 @@
+environment {
+            APP_NAME    = "calculadora"
+            IMAGE_NAME  = "wellisonraul/${env.APP_NAME}"
+            BRANCH_NAME = GIT_BRANCH.replaceFirst(/^origin\//, '')
+        }
+
+
 node{
     withInfisical(
     configuration: [
@@ -19,12 +26,7 @@ node{
         ]
     ) {
 
-    environment {
-        APP_NAME    = "calculadora"
-        IMAGE_NAME  = "wellisonraul/${env.APP_NAME}"
-        BRANCH_NAME = GIT_BRANCH.replaceFirst(/^origin\//, '')
-    }
-
+        
 
         sh "printenv" 
 

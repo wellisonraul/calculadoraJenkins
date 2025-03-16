@@ -23,6 +23,10 @@ pipeline {
             steps {
                 script{
                     node(){
+
+                        env.APP_NAME    = "calculadora"
+                        env.IMAGE_NAME  = "wellisonraul/${env.APP_NAME}"
+                        
                         withInfisical(
                         configuration: [
                             infisicalCredentialId: 'infisical',

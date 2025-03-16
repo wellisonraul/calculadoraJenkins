@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Threading;
 
-Thread.Sleep(200000);
-
 int data1 = int.Parse(Environment.GetEnvironmentVariable("data1"));
 int data2 = int.Parse(Environment.GetEnvironmentVariable("data2"));
 

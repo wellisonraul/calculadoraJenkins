@@ -30,6 +30,7 @@ node{
         sh "printenv" 
 
         sh "git clone https://github.com/wellisonraul/calculadoraJenkins.git"
+        sh "mv calculadoraJenkins/* ."
 
         echo "Compilando, testando e empacotando a aplicação..."
         app = docker.build("${env.IMAGE_NAME}:${env.BRANCH_NAME}-${env.BUILD_ID}", "--build-arg data1=${env.data1} . --no-cache")

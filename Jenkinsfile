@@ -26,7 +26,7 @@ pipeline {
 
                         env.APP_NAME    = "calculadora"
                         env.IMAGE_NAME  = "wellisonraul/${env.APP_NAME}"
-                        
+
                         withInfisical(
                         configuration: [
                             infisicalCredentialId: 'infisical',
@@ -46,7 +46,8 @@ pipeline {
                                 )
                             ]
                         ) {
-
+                        
+                        sh 'pwd'
                         echo "Compilando, testando e empacotando a aplicação..."
                         app = docker.build("${env.IMAGE_NAME}:${env.BRANCH_NAME}-${env.BUILD_ID}", "--build-arg data1=${env.data1} --build-arg data2=${env.data2} . --no-cache --progress=plain")
 

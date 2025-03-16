@@ -19,6 +19,11 @@ node{
         ]
     ) {
 
+
+    sh "printenv" 
+    
+    agent any
+
     environment {
         APP_NAME    = "calculadora"
         IMAGE_NAME  = "wellisonraul/${env.APP_NAME}"

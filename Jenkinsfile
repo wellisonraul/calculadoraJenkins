@@ -1,6 +1,6 @@
 
 node{
-withInfisical(configuration: [infisicalCredentialId: 'infisical', infisicalEnvironmentSlug: 'dev', infisicalProjectSlug: 'aula03-4-aak', infisicalUrl: 'https://app.infisical.com/'], infisicalSecrets: [infisicalSecret(includeImports: true, path: '/', secretValues: [[infisicalKey: 'data1'], [infisicalKey: 'data2']])]) {
+withInfisical(configuration: [infisicalCredentialId: 'infisical', infisicalEnvironmentSlug: 'dev', infisicalProjectSlug: 'aula03-4-aak', infisicalUrl: 'https://app.infisical.com'], infisicalSecrets: [infisicalSecret(includeImports: true, path: '/', secretValues: [[infisicalKey: 'data1'], [infisicalKey: 'data2']])]) {
     // pipeline {
         agent any
 

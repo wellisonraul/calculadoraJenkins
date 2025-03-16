@@ -23,9 +23,8 @@ pipeline {
             steps {
                 script{
                     node(){
-
-                        env.APP_NAME    = "calculadora"
-                        env.IMAGE_NAME  = "wellisonraul/${env.APP_NAME}"
+                        // env.APP_NAME    = "calculadora"
+                        // env.IMAGE_NAME  = "wellisonraul/${env.APP_NAME}"
 
                         withInfisical(
                         configuration: [
@@ -47,10 +46,10 @@ pipeline {
                             ]
                         ) {
                         
-                        sh 'echo pwd'
-                        sh 'ls -l'
-                        echo "Compilando, testando e empacotando a aplicação..."
-                        app = docker.build("${env.IMAGE_NAME}:${env.BRANCH_NAME}-${env.BUILD_ID}", "--build-arg data1=${env.data1} --build-arg data2=${env.data2} . --no-cache --progress=plain")
+                        sh 'printenv'
+                        // sh 'ls -l'
+                        // echo "Compilando, testando e empacotando a aplicação..."
+                        // app = docker.build("${env.IMAGE_NAME}:${env.BRANCH_NAME}-${env.BUILD_ID}", "--build-arg data1=${env.data1} --build-arg data2=${env.data2} . --no-cache --progress=plain")
 
                         }
                     }
@@ -102,6 +101,17 @@ pipeline {
         //         }
         //     }
         // }
+
+        stage('Build, testando e empacotando') {
+            steps {
+                script {
+                    echo "Compilando, testando e empacotando a aplicação... ${env.SOMA_DATA1}"
+                    //sh 'docker build -t $APP_NAME:$BRANCH_NAME-$BUILD_NUMBER . --no-cache'  // Exemplo de comando para compilar uma aplicação Dotnet
+                    
+                    app = docker.build("${env.IMAGE_NAME}:${env.BRANCH_NAME}-${env.BUILD_ID}", '.')
+                }
+            }
+        }
 
         stage('Docker image push') {
             steps {

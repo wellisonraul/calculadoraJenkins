@@ -28,8 +28,6 @@ pipeline {
         ]
     ) 
 
-        sh "printenv" 
-
         stages {
             stage('Build, testando e empacotando') {
                 steps {

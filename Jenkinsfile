@@ -7,22 +7,22 @@ pipeline {
     }
 
     stages {
-         stage('SonarQube Analysis') {
-            steps {
-                withSonarQubeEnv(installationName: 'sq1') {
-                    //sh "dotnet ${env.scannerHome}/SonarScanner.MSBuild.dll begin /k:\"Aula03\""
-                    sh "dotnet sonarscanner begin /k:\"Aula03\""
-                    sh "dotnet build"
-                    // sh "dotnet ${env.scannerHome}/SonarScanner.MSBuild.dll end"
-                    sh "dotnet sonarscanner end"
-                }
-            }
-        }
+        //  stage('SonarQube Analysis') {
+        //     steps {
+        //         withSonarQubeEnv(installationName: 'sq1') {
+        //             //sh "dotnet ${env.scannerHome}/SonarScanner.MSBuild.dll begin /k:\"Aula03\""
+        //             sh "dotnet sonarscanner begin /k:\"Aula03\""
+        //             sh "dotnet build"
+        //             // sh "dotnet ${env.scannerHome}/SonarScanner.MSBuild.dll end"
+        //             sh "dotnet sonarscanner end"
+        //         }
+        //     }
+        // }
 
         stage('SonarQube Analysis2') {
             steps {
                 script{
-                    node('any'){
+                    node(){
                         withInfisical(
                         configuration: [
                             infisicalCredentialId: 'infisical',

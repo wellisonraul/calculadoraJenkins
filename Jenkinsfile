@@ -1,4 +1,12 @@
 node{
+    agent any
+
+    environment {
+        APP_NAME    = "calculadora"
+        IMAGE_NAME  = "wellisonraul/${env.APP_NAME}"
+        BRANCH_NAME = GIT_BRANCH.replaceFirst(/^origin\//, '')
+    }
+    
     withInfisical(
     configuration: [
         infisicalCredentialId: 'infisical',
@@ -22,13 +30,7 @@ node{
 
     sh "printenv" 
     
-    agent any
-
-    environment {
-        APP_NAME    = "calculadora"
-        IMAGE_NAME  = "wellisonraul/${env.APP_NAME}"
-        BRANCH_NAME = GIT_BRANCH.replaceFirst(/^origin\//, '')
-    }
+    
 
     stages {
         stage('Build, testando e empacotando') {

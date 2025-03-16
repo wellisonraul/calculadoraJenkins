@@ -31,7 +31,7 @@ node{
         stage('Build, testando e empacotando') {
             steps {
                 script {
-                    echo "Compilando, testando e empacotando a aplicação... ${env.SOMA_DATA1}"
+                    echo "Compilando, testando e empacotando a aplicação... ${env.data1}"
                     //sh 'docker build -t $APP_NAME:$BRANCH_NAME-$BUILD_NUMBER . --no-cache'  // Exemplo de comando para compilar uma aplicação Dotnet
                     
                     app = docker.build("${env.IMAGE_NAME}:${env.BRANCH_NAME}-${env.BUILD_ID}", '.')

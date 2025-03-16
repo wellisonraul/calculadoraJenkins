@@ -14,9 +14,8 @@ pipeline{
             steps {
                 withSonarQubeEnv(installationName: 'sq1') {
                     // sh "source /etc/profile"
-
-                    sh "echo ${env.WORKSPACE}"
-                    sh "echo $PATH which dotnet"
+                    
+                    sh ". /home/wellison/.dotnet"
                     sh "dotnet ${env.scannerHome}/SonarScanner.MSBuild.dll begin /k:\"Aula03\""
                     sh "dotnet build"
                     sh "dotnet ${env.scannerHome}/SonarScanner.MSBuild.dll end"

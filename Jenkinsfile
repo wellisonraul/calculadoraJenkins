@@ -31,7 +31,7 @@ node{
 
 
         echo "Compilando, testando e empacotando a aplicação..."
-        app = docker.build("${env.IMAGE_NAME}:${env.BRANCH_NAME}-${env.BUILD_ID}", '.')
+        app = docker.build("${env.IMAGE_NAME}:${env.BRANCH_NAME}-${env.BUILD_ID}", '. --no-cache')
 
         echo "Docker image push"
         docker.withRegistry('https://registry.hub.docker.com/', 'dockerhub') {

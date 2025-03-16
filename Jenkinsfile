@@ -1,13 +1,10 @@
-// environment {
-   
-// }
-
+options {
+    // Keep only the last 5 builds and delete the older ones
+    buildDiscarder(logRotator(numToKeepStr: '5'))
+}
 node{
 
-    options {
-        // Keep only the last 5 builds and delete the older ones
-        buildDiscarder(logRotator(numToKeepStr: '5'))
-    }
+    
 
     env.APP_NAME    = "calculadora"
     env.IMAGE_NAME  = "wellisonraul/${env.APP_NAME}"

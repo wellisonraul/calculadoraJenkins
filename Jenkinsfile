@@ -21,32 +21,33 @@ pipeline {
 
         stage('SonarQube Analysis2') {
             steps {
-                node('any'){
-                    withInfisical(
-                    configuration: [
-                        infisicalCredentialId: 'infisical',
-                        infisicalEnvironmentSlug: 'dev', 
-                        infisicalProjectSlug: 'aula03-4-aak', 
-                        infisicalUrl: 'https://app.infisical.com'
-                    ],
-                    infisicalSecrets: [
-                            infisicalSecret(
-                                includeImports: true, 
-                                path: '/', 
-                                secretValues: [
-                                    [infisicalKey: 'data1'],
-                                    [infisicalKey: "data2"],
-                                    [infisicalKey: 'THIS_KEY_MIGHT_NOT_EXIST', isRequired: false],
-                                ]
-                            )
-                        ]
-                    ) {
+                script{
+                    node('any'){
+                        withInfisical(
+                        configuration: [
+                            infisicalCredentialId: 'infisical',
+                            infisicalEnvironmentSlug: 'dev', 
+                            infisicalProjectSlug: 'aula03-4-aak', 
+                            infisicalUrl: 'https://app.infisical.com'
+                        ],
+                        infisicalSecrets: [
+                                infisicalSecret(
+                                    includeImports: true, 
+                                    path: '/', 
+                                    secretValues: [
+                                        [infisicalKey: 'data1'],
+                                        [infisicalKey: "data2"],
+                                        [infisicalKey: 'THIS_KEY_MIGHT_NOT_EXIST', isRequired: false],
+                                    ]
+                                )
+                            ]
+                        ) {
 
-                    echo "Compilando, testando e empacotando a aplicação..."
-                    app = docker.build("${env.IMAGE_NAME}:${env.BRANCH_NAME}-${env.BUILD_ID}", "--build-arg data1=${env.data1} --build-arg data2=${env.data2} . --no-cache --progress=plain")
+                        echo "Compilando, testando e empacotando a aplicação..."
+                        app = docker.build("${env.IMAGE_NAME}:${env.BRANCH_NAME}-${env.BUILD_ID}", "--build-arg data1=${env.data1} --build-arg data2=${env.data2} . --no-cache --progress=plain")
 
+                        }
                     }
-
                 }
             }
         }

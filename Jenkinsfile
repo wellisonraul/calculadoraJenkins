@@ -13,9 +13,7 @@ pipeline{
          stage('SonarQube Analysis') {
             steps {
                 withSonarQubeEnv(installationName: 'sq1') {
-                    // sh "source /etc/profile"
-                    
-                    sh ". /home/wellison/.dotnet"
+                    //sh "dotnet ${env.scannerHome}/SonarScanner.MSBuild.dll begin /k:\"Aula03\""
                     sh "dotnet ${env.scannerHome}/SonarScanner.MSBuild.dll begin /k:\"Aula03\""
                     sh "dotnet build"
                     sh "dotnet ${env.scannerHome}/SonarScanner.MSBuild.dll end"

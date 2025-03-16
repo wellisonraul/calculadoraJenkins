@@ -32,6 +32,14 @@ node{
         //sh "git clone https://github.com/wellisonraul/calculadoraJenkins.git ."
         sh "git checkout aula03; git pull"
 
+        withSonarQubeEnv(installationName: 'sq1') {
+            //sh "dotnet ${env.scannerHome}/SonarScanner.MSBuild.dll begin /k:\"Aula03\""
+            sh "dotnet sonarscanner begin /k:\"Aula03\""
+            sh "dotnet build"
+            // sh "dotnet ${env.scannerHome}/SonarScanner.MSBuild.dll end"
+            sh "dotnet sonarscanner end"
+        }
+
         echo "Compilando, testando e empacotando a aplicação..."
         app = docker.build("${env.IMAGE_NAME}:${env.BRANCH_NAME}-${env.BUILD_ID}", "--build-arg data1=${env.data1} --build-arg data2=${env.data2} . --no-cache --progress=plain")
 

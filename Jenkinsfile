@@ -18,34 +18,39 @@ pipeline {
                 }
             }
         }
-    }
 
-    stages {
+        stage('SonarQube Analysis') {
+            steps {
+                node{
 
-        node{
-    // env.APP_NAME    = "calculadora"
-    // env.IMAGE_NAME  = "wellisonraul/${env.APP_NAME}"
+                    withInfisical(
+                    configuration: [
+                        infisicalCredentialId: 'infisical',
+                        infisicalEnvironmentSlug: 'dev', 
+                        infisicalProjectSlug: 'aula03-4-aak', 
+                        infisicalUrl: 'https://app.infisical.com'
+                    ],
+                    infisicalSecrets: [
+                            infisicalSecret(
+                                includeImports: true, 
+                                path: '/', 
+                                secretValues: [
+                                    [infisicalKey: 'data1'],
+                                    [infisicalKey: "data2"],
+                                    [infisicalKey: 'THIS_KEY_MIGHT_NOT_EXIST', isRequired: false],
+                                ]
+                            )
+                        ]
+                    ) {
 
-    withInfisical(
-    configuration: [
-        infisicalCredentialId: 'infisical',
-        infisicalEnvironmentSlug: 'dev', 
-        infisicalProjectSlug: 'aula03-4-aak', 
-        infisicalUrl: 'https://app.infisical.com'
-    ],
-    infisicalSecrets: [
-            infisicalSecret(
-                includeImports: true, 
-                path: '/', 
-                secretValues: [
-                    [infisicalKey: 'data1'],
-                    [infisicalKey: "data2"],
-                    [infisicalKey: 'THIS_KEY_MIGHT_NOT_EXIST', isRequired: false],
-                ]
-            )
-        ]
-    ) {
+                    echo "Compilando, testando e empacotando a aplicação..."
+                    app = docker.build("${env.IMAGE_NAME}:${env.BRANCH_NAME}-${env.BUILD_ID}", "--build-arg data1=${env.data1} --build-arg data2=${env.data2} . --no-cache --progress=plain")
 
+                    }
+
+                }
+            }
+        }
         // sh "printenv" 
         
         // //sh "git clone https://github.com/wellisonraul/calculadoraJenkins.git ."
@@ -59,9 +64,7 @@ pipeline {
         //     sh "dotnet sonarscanner end"
         // }
 
-        echo "Compilando, testando e empacotando a aplicação..."
-        app = docker.build("${env.IMAGE_NAME}:${env.BRANCH_NAME}-${env.BUILD_ID}", "--build-arg data1=${env.data1} --build-arg data2=${env.data2} . --no-cache --progress=plain")
-
+        
         // echo "Docker image push"
         // docker.withRegistry('https://registry.hub.docker.com/', 'dockerhub') {
         //     app.push("${env.BUILD_ID}")
@@ -81,8 +84,7 @@ pipeline {
         // docker.image("${env.IMAGE_NAME}:${env.BRANCH_NAME}-${env.BUILD_ID}").run("--name ${env.APP_NAME}-${env.BRANCH_NAME}")
 
         // echo "✅ Deploy finalizado com sucesso!"
-    }
-}
+
 
         // stage('Build, testando e empacotando') {
         //     steps {

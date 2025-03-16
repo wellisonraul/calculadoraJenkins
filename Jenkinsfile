@@ -1,4 +1,3 @@
-
 node{
     withInfisical(
     configuration: [
@@ -18,7 +17,7 @@ node{
                 ]
             )
         ]
-    )
+    ) {
     
     agent any
 
@@ -82,5 +81,6 @@ node{
         failure {
             echo "Pipeline falhou!"
         }
+    }
     }
 }

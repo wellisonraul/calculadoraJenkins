@@ -1,7 +1,13 @@
-options {
-    // Keep only the last 5 builds and delete the older ones
-    buildDiscarder(logRotator(numToKeepStr: '5'))
+pipeline {
+    agent any
+
+    options {
+        // Keep only the last 5 builds and delete the older ones
+        buildDiscarder(logRotator(numToKeepStr: '5'))
+    }
+
 }
+
 node{
 
     

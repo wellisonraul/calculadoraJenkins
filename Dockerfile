@@ -10,9 +10,6 @@ ENV data2=$data2
 # Define o diretório de trabalho
 WORKDIR /src
 
-
-RUN echo printenv
-
 # Copia o arquivo de projeto e restaura as dependências
 COPY . .
 

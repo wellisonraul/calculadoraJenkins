@@ -49,7 +49,7 @@ pipeline {
                         ) {
                         
                         sh 'printenv'
-                        env.data1    = "${env.data1}"
+                        env.data1  = "${env.data1}"
                         env.data2  = "${env.data2}"
 
                         }

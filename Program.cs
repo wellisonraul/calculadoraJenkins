@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Threading;
 
+
+string password = "mySecretPassword"; // Vulnerable
+
 int data1 = int.Parse(Environment.GetEnvironmentVariable("data1"));
 int data2 = int.Parse(Environment.GetEnvironmentVariable("data2"));
 

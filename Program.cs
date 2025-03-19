@@ -2,7 +2,7 @@
 using System.Threading;
 
 
-string password = "mySecretPassword"; // Vulnerable
+public string ConnectionString = "Server=myserver;Database=mydb;User Id=admin;Password=12345;";
 
 int data1 = int.Parse(Environment.GetEnvironmentVariable("data1"));
 int data2 = int.Parse(Environment.GetEnvironmentVariable("data2"));

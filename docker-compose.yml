@@ -1,0 +1,39 @@
+version: "3.8"
+
+services:
+  web:
+    build: .
+    ports:
+      - "5000:5000"
+    volumes:
+      - .:/app
+    environment:
+      - FLASK_ENV=development
+      - DB_HOST=db
+      - DB_NAME=meu_banco
+      - DB_USER=postgres
+      - DB_PASSWORD=postgres
+    depends_on:
+      - db  # Garantir que o banco inicie antes da aplicação
+    networks:
+      - flask
+
+  db:
+    image: postgres:13
+    restart: always
+    environment:
+      POSTGRES_DB: meu_banco
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - flask
+
+volumes:
+  postgres_data:
+
+networks:
+  flask:

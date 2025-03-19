@@ -1,20 +1,40 @@
-# Etapa 1: Build
-FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
+# Usa uma imagem base do Python
+FROM python:3.9
 
-ARG data1
-ARG data2
+# Define o diretório de trabalho dentro do container
+WORKDIR /app
 
-ENV data1=$data1
-ENV data2=$data2
+# Copia os arquivos da aplicação para o container
+COPY requirements.txt requirements.txt
 
-# Define o diretório de trabalho
-WORKDIR /src
+# Instala as dependências do projeto
+RUN pip install -r requirements.txt
 
-# Copia o arquivo de projeto e restaura as dependências
+# Copia o código-fonte para o container
 COPY . .
 
-RUN dotnet build
+# Expõe a porta 5000 para acesso externo
+EXPOSE 5000
 
-RUN dotnet test
+# Comando para iniciar a aplicação
+CMD ["python", "app.py"]
+# Usa uma imagem base do Python
+FROM python:3.9
 
-ENTRYPOINT ["dotnet", "run", "sleep 300"]
+# Define o diretório de trabalho dentro do container
+WORKDIR /app
+
+# Copia os arquivos da aplicação para o container
+COPY requirements.txt requirements.txt
+
+# Instala as dependências do projeto
+RUN pip install -r requirements.txt
+
+# Copia o código-fonte para o container
+COPY . .
+
+# Expõe a porta 5000 para acesso externo
+EXPOSE 5000
+
+# Comando para iniciar a aplicação
+CMD ["python", "app.py"]

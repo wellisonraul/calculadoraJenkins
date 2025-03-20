@@ -6,11 +6,6 @@ DOCKERFILE_PATH="/home/ubuntu/deploy/Dockerfile"
 IMAGE_TAG="latest"
 CONTAINER_NAME="${APP_NAME}"
 
-if [ $? -ne 0 ]; then
-  echo "Docker build failed!"
-  exit 1
-fi
-
 # Stop and remove existing container (if any)
 echo "Stopping and removing existing container..."
 docker stop ${CONTAINER_NAME} > /dev/null 2>&1

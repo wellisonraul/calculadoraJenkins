@@ -1,0 +1,21 @@
+name: dotnet package
+
+on: [push]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup dotnet ${{ matrix.dotnet-version }}
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '8.x'
+      - name: Display dotnet version
+        run: dotnet --version
+
+      - name: build docker
+        run: docker build -t wellisonraul/calculadora:Aula03-145 --build-arg data1=8 --build-arg data2=5 . --no-cache --progress=plain
+
+

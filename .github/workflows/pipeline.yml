@@ -2,7 +2,6 @@ name: Pipeline CI/CD com .dotnet
 
 on:
   workflow_call:
-  push:
 
 jobs:
   build:

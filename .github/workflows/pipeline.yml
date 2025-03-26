@@ -1,6 +1,6 @@
 name: Pipeline CI/CD com .dotnet
 
-on: [push]
+on: [push, workflow_call]
 
 jobs:
   build:
@@ -29,6 +29,5 @@ jobs:
           build-args: |
             data1=10
             data2=5
-
 
 

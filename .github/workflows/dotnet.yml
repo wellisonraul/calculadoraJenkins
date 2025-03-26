@@ -1,4 +1,4 @@
-name: dotnet package
+name: Configuração do dotnet
 
 on: [push]
 

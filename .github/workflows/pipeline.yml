@@ -1,4 +1,4 @@
-name: dotnet package
+name: Pipeline CI/CD com .dotnet
 
 on: [push]
 
@@ -15,7 +15,20 @@ jobs:
       - name: Display dotnet version
         run: dotnet --version
 
-      - name: build docker
-        run: docker build -t wellisonraul/calculadora:Aula03-145 --build-arg data1=8 --build-arg data2=5 . --no-cache --progress=plain
+      - name: Log in to Docker Hub
+        uses: docker/login-action@f4ef78c080cd8ba55a85445d5b36e214a81df20a
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+
+      - name: Build and push
+        uses: docker/build-push-action@v6
+        with:
+          push: true
+          tags: wellisonraul/calculadora:Aula03-145
+          build-args: |
+            data1=10
+            data2=5
+
 
 

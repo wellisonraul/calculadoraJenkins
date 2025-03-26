@@ -28,7 +28,7 @@ jobs:
         uses: docker/build-push-action@v6
         with:
           push: true
-          tags: wellisonraul/calculadora:Aula03-145
+          tags: wellisonraul/calculadora:${{ github.run_id }}
           build-args: |
             data1=10
             data2=5

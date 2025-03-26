@@ -1,6 +1,7 @@
 name: Configuração do dotnet
 
-on: [push]
+on:
+  workflow_call:
 
 jobs:
   build:

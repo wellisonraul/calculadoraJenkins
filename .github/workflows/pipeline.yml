@@ -33,4 +33,7 @@ jobs:
             data1=10
             data2=5
 
+      - name: Deploy
+        run: docker run --name calculadora --rm wellisonraul/calculadora:${{ github.run_id }} 
+
 

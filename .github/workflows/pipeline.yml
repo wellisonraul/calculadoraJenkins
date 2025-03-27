@@ -2,14 +2,15 @@ name: Pipeline CI/CD com .dotnet
 
 on:
   workflow_call:
+  push:
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Setup dotnet ${{ matrix.dotnet-version }}
+      
+      - name: Setup dotnet
         uses: actions/setup-dotnet@v4
         with:
           dotnet-version: '8.x'

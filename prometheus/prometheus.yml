@@ -21,4 +21,4 @@ scrape_configs:
 
   - job_name: telegraf
     static_configs:
-      - targets: ['192.168.1.37:9273']
+      - targets: ['SEUIP:9273']

@@ -92,7 +92,6 @@ Este projeto Vagrant cria um ambiente de desenvolvimento completo para observabi
 ## Configuração
 
 * O arquivo \`Vagrantfile\` contém a configuração da máquina virtual e as instruções de provisionamento.
-* Os arquivos de configuração do Helm estão localizados no diretório \`helm\`.
 * Você pode personalizar as configurações do Prometheus, Grafana, Loki e Alertmanager modificando os arquivos de configuração do Helm.
 
 ## Observações

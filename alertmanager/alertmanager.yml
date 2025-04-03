@@ -1,0 +1,23 @@
+route:
+  group_wait: 5s
+  receiver: discord_webhook
+  group_by: ['CountGreaterThan5']  # Agrupa alertas pelo nome do alerta
+  routes:
+    - matchers:
+        - severity="critical"  
+      receiver: discord_webhook
+
+    - matchers:
+        - severity="warning"
+      receiver: webhook_receiver 
+
+receivers:
+  - name: discord_webhook
+    discord_configs:
+      - webhook_url: ''
+        send_resolved: true
+
+  - name: webhook_receiver
+    webhook_configs:
+      - url: ''
+        send_resolved: true
